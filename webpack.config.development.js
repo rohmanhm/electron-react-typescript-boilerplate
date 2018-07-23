@@ -7,6 +7,9 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base');
+const {
+  dependencies: externals
+} = require('./app/package.json');
 
 const port = process.env.PORT || 3000;
 
@@ -162,5 +165,6 @@ module.exports = merge(baseConfig, {
   ],
 
   // https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
-  target: 'electron-renderer'
+  target: 'electron-renderer',
+  externals: Object.keys(externals || {})
 });

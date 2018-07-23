@@ -1,22 +1,10 @@
 import 'reflect-metadata'
-import { app, BrowserWindow, Menu, shell, ipcMain } from 'electron'
-import DbConn from './database/connection'
+import { app, BrowserWindow, Menu, shell } from 'electron'
+import './database'
 
 let menu
 let template
 let mainWindow: any = null
-
-ipcMain.on('TEST', async (event: any, type: any, data: any) => {
-  try {
-    const dbconn = new DbConn()
-    await dbconn.connect()
-
-    dbconn.createUser({})
-    console.log(event, type, data)
-  } catch (err) {
-    console.log('wow', err)
-  }
-})
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support') // eslint-disable-line

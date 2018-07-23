@@ -5,6 +5,7 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base');
+const nodeExternals = require('webpack-node-externals')
 
 module.exports = merge(baseConfig, {
   devtool: 'source-map',
@@ -46,4 +47,6 @@ module.exports = merge(baseConfig, {
     __dirname: false,
     __filename: false
   },
+
+  externals: [nodeExternals()]
 });

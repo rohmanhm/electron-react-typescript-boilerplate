@@ -8,6 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const baseConfig = require('./webpack.config.base');
+const nodeExternals = require('webpack-node-externals')
 
 module.exports = merge(baseConfig, {
   devtool: 'cheap-module-source-map',
@@ -118,5 +119,7 @@ module.exports = merge(baseConfig, {
   ],
 
   // https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
-  target: 'electron-renderer'
+  target: 'electron-renderer',
+
+  externals: [nodeExternals()]
 });
